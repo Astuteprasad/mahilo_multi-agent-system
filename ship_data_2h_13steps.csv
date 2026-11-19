@@ -1,0 +1,92 @@
+﻿time_step,time_min,contact,ship_name,ship_type,own_x,own_y,ship_x,ship_y,sonar_true_bearing,sonar_cue,range_cells,ship_speed
+0,0,Contact_1,Ship_1,fishing vessel,9,16,8,16,270.0,diesel engine,1.0,0.562
+0,0,Contact_2,Hostile_1,hostile ship,9,16,3,3,335.22,steam generators,14.318,0.996
+0,0,Contact_3,Ferry_1,ferry,9,16,3,10,315.0,engine whine,8.485,0.996
+0,0,Contact_4,Cargo_1,cargo ship,9,16,19,13,73.3,cavitation,10.44,1.004
+0,0,Contact_5,Fishing_2,fishing vessel,9,16,15,14,71.57,diesel engine,6.325,0.997
+0,0,Contact_6,Fishing_3,fishing vessel,9,16,19,6,45.0,diesel engine,14.142,0.997
+0,0,Contact_7,Hostile_2,hostile ship,9,16,4,5,335.56,steam generators,12.083,1.0
+1,10,Contact_1,Ship_1,fishing vessel,9,15,7.65,15.56,247.47,flutter,1.462,1.0
+1,10,Contact_2,Hostile_1,hostile ship,9,15,3.52,3.85,333.83,engine whine,12.424,1.002
+1,10,Contact_3,Ferry_1,ferry,9,15,3.98,10.18,313.84,cavitation,6.959,1.004
+1,10,Contact_4,Cargo_1,cargo ship,9,15,18.27,12.31,73.82,diesel engine,9.652,0.998
+1,10,Contact_5,Fishing_2,fishing vessel,9,15,14.07,13.64,74.98,cavitation,5.249,0.898
+1,10,Contact_6,Fishing_3,fishing vessel,9,15,18.01,6.12,45.42,trawl noise,12.65,0.691
+1,10,Contact_7,Hostile_2,hostile ship,9,15,5,5,338.2,engine whine,10.77,1.0
+2,20,Contact_1,Ship_1,fishing vessel,9,14,7.65,14.56,247.47,trawl noise,1.462,1.0
+2,20,Contact_2,Hostile_1,hostile ship,9,14,4.05,4.7,331.98,cavitation,10.535,1.005
+2,20,Contact_3,Ferry_1,ferry,9,14,4.97,10.35,312.17,engine whine,5.437,0.996
+2,20,Contact_4,Cargo_1,cargo ship,9,14,17.54,11.63,74.49,steam generators,8.863,0.997
+2,20,Contact_5,Fishing_2,fishing vessel,9,14,13.89,12.76,75.77,cavitation,5.045,1.0
+2,20,Contact_6,Fishing_3,fishing vessel,9,14,17.65,5.53,45.6,trawl noise,12.106,1.0
+2,20,Contact_7,Hostile_2,hostile ship,9,14,5,4,338.2,steam generators,10.77,1.0
+3,30,Contact_1,Ship_1,fishing vessel,9,13,7.65,13.56,247.47,trawl noise,1.462,0.952
+3,30,Contact_2,Hostile_1,hostile ship,9,13,4.57,5.56,329.23,steam generators,8.659,0.71
+3,30,Contact_3,Ferry_1,ferry,9,13,5.95,10.53,309.0,diesel engine,3.925,1.004
+3,30,Contact_4,Cargo_1,cargo ship,9,13,16.82,10.94,75.24,blade slap,8.087,0.998
+3,30,Contact_5,Fishing_2,fishing vessel,9,13,13.89,11.76,75.77,trawl noise,5.045,0.871
+3,30,Contact_6,Fishing_3,fishing vessel,9,13,17.65,4.53,45.6,diesel engine,12.106,1.0
+3,30,Contact_7,Hostile_2,hostile ship,9,13,5,3,338.2,cavitation,10.77,1.0
+4,40,Contact_1,Ship_1,fishing vessel,9,12,6.7,13.5,236.89,cavitation,2.746,0.853
+4,40,Contact_2,Hostile_1,hostile ship,9,12,5.15,5.97,327.44,engine whine,7.154,0.998
+4,40,Contact_3,Ferry_1,ferry,9,12,6.94,10.7,302.25,diesel engine,2.436,0.996
+4,40,Contact_4,Cargo_1,cargo ship,9,12,16.09,10.26,76.21,blade slap,7.3,1.004
+4,40,Contact_5,Fishing_2,fishing vessel,9,12,13.75,10.9,76.96,cavitation,4.876,0.961
+4,40,Contact_6,Fishing_3,fishing vessel,9,12,17.65,3.53,45.6,trawl noise,12.106,0.97
+4,40,Contact_7,Hostile_2,hostile ship,9,12,4,3,330.95,steam generators,10.296,1.0
+5,50,Contact_1,Ship_1,fishing vessel,9,11,6.55,14.34,216.26,diesel engine,4.142,1.0
+5,50,Contact_2,Hostile_1,hostile ship,9,11,5.89,5.3,331.38,engine whine,6.493,0.998
+5,50,Contact_3,Ferry_1,ferry,9,11,7.92,10.88,276.34,diesel engine,1.087,1.004
+5,50,Contact_4,Cargo_1,cargo ship,9,11,15.36,9.57,77.33,cavitation,6.519,0.998
+5,50,Contact_5,Fishing_2,fishing vessel,9,11,12.79,10.94,89.09,flutter,3.79,1.0
+5,50,Contact_6,Fishing_3,fishing vessel,9,11,16.68,3.5,45.68,cavitation,10.735,0.88
+5,50,Contact_7,Hostile_2,hostile ship,9,11,3,3,323.13,blade slap,10.0,1.0
+6,60,Contact_1,Ship_1,fishing vessel,9,10,6.56,15.34,204.56,cavitation,5.871,0.84
+6,60,Contact_2,Hostile_1,hostile ship,9,10,6.62,4.62,336.14,diesel engine,5.883,0.883
+6,60,Contact_3,Ferry_1,ferry,9,10,8.91,11.05,184.9,cavitation,1.054,0.996
+6,60,Contact_4,Cargo_1,cargo ship,9,10,14.63,8.89,78.85,blade slap,5.738,1.004
+6,60,Contact_5,Fishing_2,fishing vessel,9,10,12.8,11.94,117.05,diesel engine,4.267,0.98
+6,60,Contact_6,Fishing_3,fishing vessel,9,10,16.55,4.37,53.29,cavitation,9.418,1.0
+6,60,Contact_7,Hostile_2,hostile ship,9,10,2,3,315.0,engine whine,9.899,1.0
+7,70,Contact_1,Ship_1,fishing vessel,9,9,5.74,15.52,206.57,trawl noise,7.29,0.797
+7,70,Contact_2,Hostile_1,hostile ship,9,9,7.38,4.17,341.46,blade slap,5.094,0.999
+7,70,Contact_3,Ferry_1,ferry,9,9,9.89,11.23,158.24,engine whine,2.401,1.004
+7,70,Contact_4,Cargo_1,cargo ship,9,9,13.9,8.2,80.73,steam generators,4.965,0.982
+7,70,Contact_5,Fishing_2,fishing vessel,9,9,12.78,12.92,136.04,flutter,5.446,1.0
+7,70,Contact_6,Fishing_3,fishing vessel,9,9,16.56,5.37,64.35,flutter,8.386,0.863
+7,70,Contact_7,Hostile_2,hostile ship,9,9,2,4,305.54,cavitation,8.602,1.0
+8,80,Contact_1,Ship_1,fishing vessel,9,8,5.5,16.28,202.91,diesel engine,8.989,1.0
+8,80,Contact_2,Hostile_1,hostile ship,9,8,8.22,4.71,346.66,steam generators,3.381,0.732
+8,80,Contact_3,Ferry_1,ferry,9,8,10.88,11.4,151.06,cavitation,3.885,0.996
+8,80,Contact_4,Cargo_1,cargo ship,9,8,13.36,7.38,81.91,blade slap,4.404,0.997
+8,80,Contact_5,Fishing_2,fishing vessel,9,8,11.78,12.92,150.53,cavitation,5.651,0.96
+8,80,Contact_6,Fishing_3,fishing vessel,9,8,15.71,5.52,69.72,trawl noise,7.154,0.817
+8,80,Contact_7,Hostile_2,hostile ship,9,8,2,5,293.2,blade slap,7.616,1.0
+9,90,Contact_1,Ship_1,fishing vessel,8.99,7,5.5,17.28,198.75,trawl noise,10.856,0.856
+9,90,Contact_2,Hostile_1,hostile ship,8.99,7,8.84,5.1,355.49,engine whine,1.906,0.0
+9,90,Contact_3,Ferry_1,ferry,8.99,7,11.86,11.58,147.93,diesel engine,5.405,1.004
+9,90,Contact_4,Cargo_1,cargo ship,8.99,7,12.91,6.49,82.59,blade slap,3.953,1.006
+9,90,Contact_5,Fishing_2,fishing vessel,8.99,7,11.75,13.88,158.14,cavitation,7.413,0.951
+9,90,Contact_6,Fishing_3,fishing vessel,8.99,7,15.5,6.31,83.95,trawl noise,6.546,1.0
+9,90,Contact_7,Hostile_2,hostile ship,8.99,7,3,5,288.46,steam generators,6.315,1.0
+10,100,Contact_1,Ship_1,fishing vessel,8.99,6,6.35,17.38,193.06,trawl noise,11.682,0.738
+10,100,Contact_2,Hostile_1,hostile ship,8.99,6,8.84,5.1,350.54,steam generators,0.912,0.0
+10,100,Contact_3,Ferry_1,ferry,8.99,6,12.85,11.75,146.13,engine whine,6.925,0.996
+10,100,Contact_4,Cargo_1,cargo ship,8.99,6,12.46,5.59,83.26,blade slap,3.494,0.997
+10,100,Contact_5,Fishing_2,fishing vessel,8.99,6,11.8,14.83,162.35,flutter,9.266,0.992
+10,100,Contact_6,Fishing_3,fishing vessel,8.99,6,15.5,7.31,101.38,diesel engine,6.64,0.873
+10,100,Contact_7,Hostile_2,hostile ship,8.99,6,4,5,281.33,blade slap,5.089,1.0
+11,110,Contact_1,Ship_1,fishing vessel,8.99,5,6.66,18.05,190.12,trawl noise,13.256,1.0
+11,110,Contact_2,Hostile_1,hostile ship,8.99,5,8.84,5.1,236.31,blade slap,0.18,0.0
+11,110,Contact_3,Ferry_1,ferry,8.99,5,13.83,11.93,145.07,engine whine,8.453,0.995
+11,110,Contact_4,Cargo_1,cargo ship,8.99,5,12.01,4.7,84.33,blade slap,3.035,0.997
+11,110,Contact_5,Fishing_2,fishing vessel,8.99,5,12.79,14.77,158.75,cavitation,10.483,0.888
+11,110,Contact_6,Fishing_3,fishing vessel,8.99,5,16.37,7.38,107.87,cavitation,7.754,0.758
+11,110,Contact_7,Hostile_2,hostile ship,8.99,5,5,5,270.0,engine whine,3.99,2.0
+12,120,Contact_1,Ship_1,fishing vessel,8.99,4,6.66,19.05,188.8,flutter,15.229,0.98
+12,120,Contact_2,Hostile_1,hostile ship,8.99,4,8.84,5.1,187.77,steam generators,1.11,0.0
+12,120,Contact_3,Ferry_1,ferry,8.99,4,14.81,12.1,144.3,cavitation,9.974,1.006
+12,120,Contact_4,Cargo_1,cargo ship,8.99,4,11.56,3.81,85.77,steam generators,2.577,0.864
+12,120,Contact_5,Fishing_2,fishing vessel,8.99,4,12.91,15.65,161.4,cavitation,12.292,1.0
+12,120,Contact_6,Fishing_3,fishing vessel,8.99,4,16.66,8.08,118.01,trawl noise,8.688,1.0
+12,120,Contact_7,Hostile_2,hostile ship,8.99,4,5,3,284.07,blade slap,4.113,2.0

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Track Manager experiment</title>
+<style>
+  :root { --bg:#f4f5f7; --card:#fff; --line:#d5d9e0; --ink:#1d2433; --muted:#667085; --accent:#1f5fbf; --ok:#1a7f4b; --bad:#b42318; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:14px/1.4 "Segoe UI", system-ui, sans-serif; color:var(--ink); background:var(--bg); height:100vh; display:flex; flex-direction:column; }
+  header { display:flex; align-items:center; gap:14px; padding:8px 14px; background:var(--card); border-bottom:1px solid var(--line); }
+  header .title { font-weight:600; }
+  header .info { color:var(--muted); }
+  header .spacer { flex:1; }
+  button { font:inherit; padding:6px 14px; border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; }
+  button.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+  button:disabled { opacity:.45; cursor:not-allowed; }
+  main { flex:1; display:grid; grid-template-columns: 1fr 1.15fr; gap:10px; padding:10px; min-height:0; }
+  .col { display:flex; flex-direction:column; gap:10px; min-height:0; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:8px; display:flex; flex-direction:column; min-height:0; }
+  .card h3 { margin:0; padding:8px 12px; font-size:13px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); border-bottom:1px solid var(--line); }
+  .scroll { overflow:auto; padding:10px 12px; min-height:0; }
+  #chatCard { flex:1; }
+  #refCard { flex:1; }
+  .banner { padding:6px 12px; background:#eef3fb; border-bottom:1px solid var(--line); color:var(--accent); font-weight:600; }
+  .msg .who { display:block; font-size:11px; font-weight:600; color:var(--muted); margin-bottom:2px; }
+  .msg.marker { align-self:center; max-width:100%; background:none; color:var(--muted); font-size:12px; padding:2px; }
+  .composer select { font:inherit; padding:4px; max-width:170px; align-self:flex-start; height:30px; }
+  table { border-collapse:collapse; width:100%; }
+  th, td { text-align:left; padding:3px 8px; border-bottom:1px solid #eceef2; font-variant-numeric: tabular-nums; }
+  th { color:var(--muted); font-weight:500; font-size:12px; }
+  .tabs { display:flex; border-bottom:1px solid var(--line); }
+  .tab { padding:8px 14px; cursor:pointer; border-bottom:2px solid transparent; color:var(--muted); }
+  .tab.active { color:var(--accent); border-bottom-color:var(--accent); font-weight:600; }
+  #tabCard { flex:1.2; }
+  .pane { display:none; flex:1; min-height:0; flex-direction:column; }
+  .pane.active { display:flex; }
+  .msgs { flex:1; overflow:auto; padding:10px 12px; display:flex; flex-direction:column; gap:8px; min-height:0; }
+  .msg { max-width:86%; padding:7px 10px; border-radius:8px; white-space:pre-wrap; }
+  .msg.you { align-self:flex-end; background:#e3edfb; }
+  .msg.agent { align-self:flex-start; background:#f0f1f4; }
+  .msg.system { align-self:center; color:var(--bad); font-size:12px; }
+  .composer { display:flex; gap:8px; padding:8px 10px; border-top:1px solid var(--line); }
+  .composer textarea { flex:1; resize:none; height:52px; font:inherit; padding:6px 8px; border:1px solid var(--line); border-radius:6px; }
+  .ref { white-space:pre-wrap; font-size:13px; }
+  #formCard { flex:none; }
+  #formCard table select { font:inherit; padding:3px 4px; max-width:130px; }
+  .formfoot { display:flex; align-items:center; gap:12px; padding:8px 12px; border-top:1px solid var(--line); }
+  .formfoot .saved { color:var(--ok); }
+  .formfoot .err { color:var(--bad); }
+  .formfoot a { margin-left:auto; color:var(--muted); font-size:12px; cursor:pointer; text-decoration:underline; }
+  .overlay { position:fixed; inset:0; background:rgba(20,28,45,.55); display:flex; align-items:center; justify-content:center; z-index:10; }
+  .overlay .box { background:#fff; padding:24px 28px; border-radius:10px; width:360px; display:flex; flex-direction:column; gap:12px; }
+  .overlay input { font:inherit; padding:8px; border:1px solid var(--line); border-radius:6px; }
+  .hidden { display:none !important; }
+  .empty { color:var(--muted); }
+</style>
+</head>
+<body>
+
+<div id="startOverlay" class="overlay hidden">
+  <div class="box">
+    <div class="title" style="font-size:16px;font-weight:600">Start a session</div>
+    <label>Participant ID (letters, digits, - and _)<br><input id="pid" maxlength="40" autofocus style="width:100%"></label>
+    <div id="startErr" class="err" style="color:var(--bad)"></div>
+    <button class="primary" id="startBtn">Start session</button>
+  </div>
+</div>
+
+<div id="endOverlay" class="overlay hidden">
+  <div class="box">
+    <div style="font-size:16px;font-weight:600">Session finished</div>
+    <div id="endMsg"></div>
+    <button class="primary" onclick="location.reload()">New session</button>
+  </div>
+</div>
+
+<header>
+  <span class="title">Track Manager experiment</span>
+  <span class="info" id="hdrInfo">No session</span>
+  <span class="spacer"></span>
+  <button class="primary" id="nextBtn" disabled>Next data point</button>
+  <button id="endBtn" disabled>End session</button>
+</header>
+
+<main>
+  <div class="col">
+    <section class="card" id="chatCard">
+      <h3>Ask the team</h3>
+      <div class="banner" id="banner">No data released yet.</div>
+      <div class="msgs" id="msgs"><div class="empty">The data reaches you only through the agents. Choose who to ask, then type your question.</div></div>
+      <div class="composer">
+        <select id="to"><option value="">Ask…</option></select>
+        <textarea id="in" placeholder="Type a question (Enter to send, Shift+Enter for a new line)"></textarea>
+        <button class="primary" id="send">Send</button>
+        <button id="showBtn" title="Shows the chosen agent's latest data exactly as it received it">Show latest data</button>
+      </div>
+    </section>
+  </div>
+  <div class="col">
+    <section class="card" id="refCard">
+      <h3>Reference</h3>
+      <div class="scroll ref" id="ref"></div>
+    </section>
+    <section class="card" id="formCard">
+      <h3 id="formTitle">Your answers</h3>
+      <div class="scroll" style="padding:4px 12px;max-height:300px"><table id="formTable"></table></div>
+      <div class="formfoot">
+        <button class="primary" id="submitBtn" disabled>Submit answers</button>
+        <span id="formMsg"></span>
+        <a id="skipLink" class="hidden">Advance without answers</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+let CFG = null, ST = null, busy = {};
+
+async function api(path, body) {
+  const opt = body === undefined ? {} : {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)};
+  const r = await fetch(path, opt);
+  let j = {};
+  try { j = await r.json(); } catch (e) {}
+  if (!r.ok) throw new Error(j.detail || ("Error " + r.status));
+  return j;
+}
+
+function esc(s) { return String(s).replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])); }
+
+/* ---------- layout built once ---------- */
+function buildStatic() {
+  $("ref").textContent = CFG.reference;
+  CFG.agents.forEach(a => { const o = document.createElement("option"); o.value = a.name; o.textContent = a.label; $("to").appendChild(o); });
+  $("send").onclick = send;
+  $("showBtn").onclick = showLatest;
+  $("in").addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); } });
+  buildForm();
+}
+
+function label(agent) { const a = CFG.agents.find(x => x.name === agent); return a ? a.label : agent; }
+
+function typeOptions() {
+  let h = '<option value="">— choose —</option>';
+  CFG.kinds.forEach(k => h += '<option value="' + k + '">' + k + '</option>');
+  return h + '<option value="unknown">unknown</option>';
+}
+
+function distanceOptions() {
+  let h = '<option value="">— choose —</option>';
+  for (let d = 0; d <= CFG.distance_max; d++) h += '<option value="' + d + '">' + d + "</option>";
+  return h;
+}
+
+function buildForm() {
+  let h = "<tr><th>Track</th><th>Ship type</th><th>Distance (cells)</th><th>Confidence</th><th>Threat</th></tr>";
+  CFG.contacts.forEach(c => {
+    h += "<tr><td>" + CFG.tracks[c] + '</td><td><select id="t1_' + c + '">' + typeOptions() + "</select></td>" +
+         '<td><select id="d_' + c + '">' + distanceOptions() + "</select></td>" +
+         '<td><select id="cf_' + c + '"><option value="">— choose —</option>' +
+         CFG.confidence.map(x => '<option value="' + x.value + '">' + x.label + "</option>").join("") + "</select></td>" +
+         '<td><select id="th_' + c + '"><option value="">— choose —</option>' +
+         CFG.threats.map(t => '<option value="' + t + '">' + t + "</option>").join("") + "</select></td></tr>";
+  });
+  $("formTable").innerHTML = h;
+  document.querySelectorAll("#formTable select").forEach(s => s.addEventListener("change", () => { $("formMsg").textContent = ""; }));
+}
+
+function prefill(last) {
+  CFG.contacts.forEach(c => {
+    const a = last && last[c]; if (!a) return;
+    $("t1_" + c).value = a.type || ""; $("d_" + c).value = a.distance === undefined ? "" : a.distance;
+    $("cf_" + c).value = a.confidence || ""; $("th_" + c).value = a.threat || "";
+  });
+}
+
+/* ---------- rendering state ---------- */
+function renderBanner() {
+  const r = ST.released, last = r.length ? r[r.length - 1] : null, d = ST.delivery || {};
+  let t = last ? "Step " + last.step + " (time " + last.time_min + " min): new data released. Ask the agents for it."
+               : "No data released yet.";
+  const banner = $("banner");
+  if (last && d.agents) {
+    if (d.all_ok) t += "  ✓ Delivered to all " + Object.keys(d.agents).length + " agents.";
+    else t += "  ⚠ NOT delivered to: " + Object.keys(d.agents).filter(a => !d.agents[a]).map(label).join(", ") + ". Tell the experimenter.";
+  }
+  banner.textContent = t;
+  banner.style.background = d.agents && !d.all_ok ? "#fdeaea" : "";
+  banner.style.color = d.agents && !d.all_ok ? "#b3261e" : "";
+}
+
+function renderChat() {
+  const items = ST.released.map(s => ({wall: s.wall, kind: "marker", text: "— Step " + s.step + " released (time " + s.time_min + " min) —"}));
+  CFG.agents.forEach(a => (ST.chats[a.name] || []).forEach(m => items.push({wall: m.wall || "", kind: m.who, agent: a.name, text: m.text})));
+  items.sort((x, y) => (x.wall < y.wall ? -1 : x.wall > y.wall ? 1 : 0));
+  const box = $("msgs");
+  if (!items.length) { box.innerHTML = '<div class="empty">The data reaches you only through the agents. Choose who to ask, then type your question.</div>'; return; }
+  box.innerHTML = items.map(m => {
+    if (m.kind === "marker") return '<div class="msg marker">' + esc(m.text) + "</div>";
+    const who = m.kind === "you" ? "You → " + label(m.agent) : m.kind === "agent" ? label(m.agent) : "";
+    return '<div class="msg ' + m.kind + '">' + (who ? '<span class="who">' + esc(who) + "</span>" : "") + esc(m.text) + "</div>";
+  }).join("");
+  box.scrollTop = box.scrollHeight;
+}
+
+function renderControls() {
+  const active = ST.active;
+  $("hdrInfo").textContent = active ? ("Participant " + ST.participant + " — step " + (ST.released_count) + " of " + ST.total + " released") : "No session";
+  const last = ST.last_step_released;
+  $("nextBtn").style.display = last ? "none" : "";
+  $("nextBtn").disabled = !ST.can_next;
+  $("nextBtn").title = active && ST.current !== null && !ST.answered ? "Submit the answers for this step first" : "";
+  $("endBtn").disabled = !active || (last && !ST.answered);
+  $("endBtn").className = last && ST.answered ? "primary" : "";
+  const waiting = active && ST.current !== null;
+  $("submitBtn").disabled = !waiting;
+  $("formTitle").textContent = waiting ? "Your answers for step " + ST.current : "Your answers";
+  $("skipLink").classList.toggle("hidden", !(waiting && !ST.answered && !last));
+}
+
+function render() { renderBanner(); renderChat(); renderControls(); }
+
+async function refresh() {
+  ST = await api("/api/state");
+  $("startOverlay").classList.toggle("hidden", ST.active);
+  render();
+}
+
+/* ---------- actions ---------- */
+$("startBtn").onclick = async () => {
+  try { await api("/api/start", {participant_id: $("pid").value}); await refresh(); prefill(null); }
+  catch (e) { $("startErr").textContent = e.message; }
+};
+$("pid").addEventListener("keydown", e => { if (e.key === "Enter") $("startBtn").click(); });
+
+async function doNext(skip) {
+  try {
+    $("nextBtn").disabled = true;
+    const r = await api("/api/next", {skip});
+    await refresh(); prefill(ST.last_answers); $("formMsg").textContent = "";
+  } catch (e) { alert(e.message); await refresh(); }
+}
+$("nextBtn").onclick = () => { if (confirm("Release the next data point? You cannot go back.")) doNext(false); };
+$("skipLink").onclick = () => { if (confirm("Move on WITHOUT submitting answers for this step?")) doNext(true); };
+
+$("endBtn").onclick = async () => {
+  if (!confirm("End the session now?")) return;
+  try {
+    const r = await api("/api/end", {});
+    $("endMsg").textContent = "Saved in " + r.folder + (r.ended_early ? " (ended before all steps were answered)." : ".");
+    $("endOverlay").classList.remove("hidden");
+  } catch (e) { alert(e.message); }
+};
+
+$("submitBtn").onclick = async () => {
+  const answers = {};
+  for (const c of CFG.contacts) {
+    const t1 = $("t1_" + c).value, dist = $("d_" + c).value, th = $("th_" + c).value, cf = $("cf_" + c).value, nm = CFG.tracks[c];
+    if (!t1 || dist === "" || !cf || !th) { $("formMsg").innerHTML = '<span class="err">Choose a ship type, a distance, a confidence and a threat level for ' + nm + ".</span>"; return; }
+    answers[c] = {type: t1, distance: Number(dist), confidence: Number(cf), threat: th};
+  }
+  try {
+    const r = await api("/api/answers", {step: ST.current, answers});
+    $("formMsg").innerHTML = '<span class="saved">Saved ✓ ' + r.saved.slice(11) + "</span>";
+    await refresh();
+  } catch (e) { $("formMsg").innerHTML = '<span class="err">' + esc(e.message) + "</span>"; }
+};
+
+async function showLatest() {
+  const agent = $("to").value;
+  if (!agent) { alert("Choose which agent's data to show."); return; }
+  try { await api("/api/show", {agent}); ST = await api("/api/state"); renderChat(); }
+  catch (e) { alert(e.message); }
+}
+
+async function send() {
+  const agent = $("to").value, ta = $("in"), text = ta.value.trim();
+  if (!agent) { alert("Choose who to ask first."); return; }
+  if (!text || busy[agent]) return;
+  busy[agent] = true; ta.value = "";
+  const now = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 19);   // local time, like the server
+  ST.chats[agent] = (ST.chats[agent] || []).concat([{who: "you", text, wall: now}, {who: "system", text: "…the agent is answering", wall: now}]);
+  renderChat();
+  try { await api("/api/chat", {agent, message: text}); }
+  catch (e) { ST.chats[agent].push({who: "system", text: e.message, wall: now}); }
+  busy[agent] = false;
+  ST = await api("/api/state"); renderChat(); ta.focus();
+}
+
+(async () => {
+  CFG = await api("/api/config");
+  buildStatic();
+  await refresh();
+  prefill(ST.last_answers);
+})();
+</script>
+</body>
+</html>

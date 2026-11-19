@@ -1,0 +1,17 @@
+THE MAP: a grid of 20 x 20 cells. x runs across from 1 (west) to 20 (east). y runs down from 1 (north)
+to 20 (south), so north is up. One cell is 1 nautical mile. Positions (x, y) and ranges are whole numbers;
+a range is the distance in cells from Ownship to the track; a speed is in cells per step; each step is 20 minutes (Ownship moves 2 cells per step).
+Ownship is our submarine.
+SHIP TYPES: every track is one of four types: fishing vessel, ferry, cargo ship, hostile ship.
+SONAR CUE GUIDE: the sounds each type can make (a type makes only the sounds in its list):
+  hostile ship: diesel engine, steam generators, blade slap, cavitation, engine whine
+  fishing vessel: diesel engine, flutter, cavitation, trawl noise
+  ferry: diesel engine, cavitation, engine whine
+  cargo ship: diesel engine, steam generators, cavitation, blade slap
+A sound that is not in a type's list rules that type out. A sound that is in a type's list does not
+prove it: it only keeps that type possible. A sound a type could make but has not made so far makes
+that type less likely, more so the longer you listen.
+WHO HAS WHAT: the Track Analyst gives Ownship's position and each track's position, range and speed; the Sonar
+Operator gives the sonar cues; the Periscope Operator gives what the periscope shows.
+PERISCOPE: when the periscope is raised it may give a visual report of a track's ship type and a collision warning
+(SAFE or COLLISION RISK). A track with no report was not seen through the periscope; that does not rule out any type.

@@ -1,0 +1,50 @@
+time_step,time_min,contact,own_x,own_y,track_x,track_y,range,speed,sonar_cue,periscope_raised,periscope_report,collision_warning
+0,0,Contact_1,9,16,8,16,1,1.6,diesel engine,No,nothing seen,SAFE
+0,0,Contact_2,9,16,3,3,14,2.0,steam generators,No,nothing seen,SAFE
+0,0,Contact_3,9,16,3,10,8,2.0,engine whine,No,nothing seen,COLLISION RISK
+0,0,Contact_4,9,16,19,13,10,2.0,cavitation,No,nothing seen,COLLISION RISK
+0,0,Contact_5,9,16,15,14,6,1.9,diesel engine,No,nothing seen,SAFE
+0,0,Contact_6,9,16,19,6,14,1.7,diesel engine,No,nothing seen,COLLISION RISK
+0,0,Contact_7,9,16,4,5,12,2.0,steam generators,No,nothing seen,SAFE
+1,20,Contact_1,9,14,8,15,1,2.0,trawl noise,Yes,fishing vessel,SAFE
+1,20,Contact_2,9,14,4,5,11,1.7,cavitation,Yes,nothing seen,SAFE
+1,20,Contact_3,9,14,5,10,5,2.0,engine whine,Yes,nothing seen,COLLISION RISK
+1,20,Contact_4,9,14,18,12,9,2.0,steam generators,Yes,nothing seen,COLLISION RISK
+1,20,Contact_5,9,14,14,13,5,1.9,cavitation,Yes,nothing seen,SAFE
+1,20,Contact_6,9,14,18,6,12,2.0,trawl noise,Yes,nothing seen,SAFE
+1,20,Contact_7,9,14,5,4,11,2.0,steam generators,Yes,nothing seen,SAFE
+2,40,Contact_1,9,12,7,14,3,1.9,cavitation,Yes,already reported,SAFE
+2,40,Contact_2,9,12,5,6,7,2.0,engine whine,Yes,nothing seen,SAFE
+2,40,Contact_3,9,12,7,11,2,2.0,diesel engine,Yes,ferry,COLLISION RISK
+2,40,Contact_4,9,12,16,10,7,2.0,blade slap,Yes,nothing seen,COLLISION RISK
+2,40,Contact_5,9,12,14,11,5,2.0,cavitation,Yes,nothing seen,SAFE
+2,40,Contact_6,9,12,18,4,12,1.9,trawl noise,Yes,nothing seen,COLLISION RISK
+2,40,Contact_7,9,12,4,3,10,2.0,steam generators,Yes,nothing seen,SAFE
+3,60,Contact_1,9,10,7,15,6,1.6,cavitation,Yes,nothing seen,SAFE
+3,60,Contact_2,9,10,7,5,6,1.9,diesel engine,Yes,nothing seen,SAFE
+3,60,Contact_3,9,10,9,11,1,2.0,cavitation,Yes,already reported,SAFE
+3,60,Contact_4,9,10,15,9,6,2.0,blade slap,Yes,nothing seen,COLLISION RISK
+3,60,Contact_5,9,10,13,12,4,2.0,diesel engine,Yes,nothing seen,SAFE
+3,60,Contact_6,9,10,17,4,9,1.9,cavitation,Yes,nothing seen,SAFE
+3,60,Contact_7,9,10,2,3,10,2.0,engine whine,Yes,nothing seen,SAFE
+4,80,Contact_1,9,8,6,16,9,1.9,diesel engine,Yes,nothing seen,SAFE
+4,80,Contact_2,9,8,8,5,3,0.7,steam generators,Yes,nothing seen,COLLISION RISK
+4,80,Contact_3,9,8,11,11,4,2.0,cavitation,Yes,nothing seen,SAFE
+4,80,Contact_4,9,8,13,7,4,2.0,blade slap,Yes,nothing seen,COLLISION RISK
+4,80,Contact_5,9,8,12,13,6,2.0,cavitation,Yes,nothing seen,SAFE
+4,80,Contact_6,9,8,16,6,7,1.8,trawl noise,Yes,nothing seen,SAFE
+4,80,Contact_7,9,8,2,5,8,2.0,blade slap,Yes,nothing seen,SAFE
+5,100,Contact_1,9,6,6,17,12,1.7,trawl noise,Yes,nothing seen,SAFE
+5,100,Contact_2,9,6,9,5,1,0.0,steam generators,Yes,hostile ship,COLLISION RISK
+5,100,Contact_3,9,6,13,12,7,2.0,engine whine,Yes,nothing seen,SAFE
+5,100,Contact_4,9,6,12,6,3,2.0,blade slap,Yes,nothing seen,COLLISION RISK
+5,100,Contact_5,9,6,12,15,9,1.9,flutter,Yes,nothing seen,SAFE
+5,100,Contact_6,9,6,16,7,7,1.7,diesel engine,Yes,nothing seen,SAFE
+5,100,Contact_7,9,6,4,5,5,3.0,blade slap,Yes,nothing seen,COLLISION RISK
+6,120,Contact_1,9,4,7,19,15,2.0,flutter,Yes,nothing seen,SAFE
+6,120,Contact_2,9,4,9,5,1,0.0,steam generators,Yes,already reported,SAFE
+6,120,Contact_3,9,4,15,12,10,2.0,cavitation,Yes,nothing seen,SAFE
+6,120,Contact_4,9,4,12,4,3,1.8,steam generators,Yes,cargo ship,SAFE
+6,120,Contact_5,9,4,13,16,12,2.0,cavitation,Yes,nothing seen,SAFE
+6,120,Contact_6,9,4,17,8,9,2.0,trawl noise,Yes,nothing seen,SAFE
+6,120,Contact_7,9,4,5,3,4,4.0,blade slap,Yes,nothing seen,SAFE
